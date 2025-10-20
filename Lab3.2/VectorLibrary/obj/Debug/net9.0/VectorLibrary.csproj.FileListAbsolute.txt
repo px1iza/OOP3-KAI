@@ -1,0 +1,11 @@
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/bin/Debug/net9.0/VectorLibrary.deps.json
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/bin/Debug/net9.0/VectorLibrary.dll
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/bin/Debug/net9.0/VectorLibrary.pdb
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/obj/Debug/net9.0/VectorLibrary.GeneratedMSBuildEditorConfig.editorconfig
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/obj/Debug/net9.0/VectorLibrary.AssemblyInfoInputs.cache
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/obj/Debug/net9.0/VectorLibrary.AssemblyInfo.cs
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/obj/Debug/net9.0/VectorLibrary.csproj.CoreCompileInputs.cache
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/obj/Debug/net9.0/VectorLibrary.dll
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/obj/Debug/net9.0/refint/VectorLibrary.dll
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/obj/Debug/net9.0/VectorLibrary.pdb
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/obj/Debug/net9.0/ref/VectorLibrary.dll
