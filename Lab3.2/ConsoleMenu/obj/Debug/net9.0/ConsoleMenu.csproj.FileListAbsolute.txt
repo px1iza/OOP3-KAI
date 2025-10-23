@@ -16,3 +16,4 @@
 /Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/ConsoleMenu/obj/Debug/net9.0/ConsoleMenu.pdb
 /Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/ConsoleMenu/obj/Debug/net9.0/ConsoleMenu.genruntimeconfig.cache
 /Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/ConsoleMenu/obj/Debug/net9.0/ref/ConsoleMenu.dll
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/ConsoleMenu/obj/Debug/net9.0/ConsoleMenu.sourcelink.json

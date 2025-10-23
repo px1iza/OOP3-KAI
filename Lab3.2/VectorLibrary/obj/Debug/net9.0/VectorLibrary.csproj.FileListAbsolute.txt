@@ -9,3 +9,4 @@
 /Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/obj/Debug/net9.0/refint/VectorLibrary.dll
 /Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/obj/Debug/net9.0/VectorLibrary.pdb
 /Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/obj/Debug/net9.0/ref/VectorLibrary.dll
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.2/VectorLibrary/obj/Debug/net9.0/VectorLibrary.sourcelink.json

@@ -10,11 +10,9 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
 
-            // ========== ЗАВДАННЯ 2: GENERIC КОЛЕКЦІЯ (List<T>) ==========
             Console.WriteLine("1. УЗАГАЛЬНЕНА КОЛЕКЦІЯ (List<Vector>)");
             List<Vector> list = new List<Vector>();
 
-            // Додавання
             list.Add(new Vector(3, 4));
             list.Add(new Vector(1, 2));
             list.Add(new Vector(5, 12));
@@ -22,22 +20,27 @@ namespace ConsoleApp
             Console.WriteLine("Після додавання:");
             Display(list);
 
-            // Оновлення
             list[0] = new Vector(6, 8);
             Console.WriteLine("Після оновлення (індекс 0):");
             Display(list);
 
-            // Пошук
-            var found = list.Find(v => v.Length > 10);
+            Vector found = null!;
+
+            foreach (var v in list)
+            {
+                if (v.Length > 10)
+                {
+                    found = v;
+                    break;
+                }
+            }
             if (found != null)
                 Console.WriteLine("Пошук (довжина > 10): " + found.Output() + "\n");
 
-            // Видалення
             list.RemoveAt(0);
             Console.WriteLine("Після видалення (індекс 0):");
             Display(list);
 
-            // ========== ЗАВДАННЯ 2: МАСИВ ==========
             Console.WriteLine("\n2. МАСИВ (Vector[])");
             Vector[] arr = new Vector[3];
             arr[0] = new Vector(3, 4);
@@ -52,7 +55,6 @@ namespace ConsoleApp
             Console.WriteLine("Після оновлення (індекс 0):");
             Display(arr);
 
-            // Пошук
             Console.Write("Пошук (довжина > 10): ");
             foreach (Vector v in arr)
             {
@@ -63,16 +65,13 @@ namespace ConsoleApp
                 }
             }
 
-            // Видалення (встановлення null)
-            arr[2] = null;
+            arr[2] = null!;
             Console.WriteLine("Після видалення (індекс 2):");
             Display(arr);
 
-            // ===== ЗАВДАННЯ 2: NON-GENERIC КОЛЕКЦІЯ (ArrayList) ==========
             Console.WriteLine("\n3. НЕ-УЗАГАЛЬНЕНА КОЛЕКЦІЯ (ArrayList)");
             ArrayList nonGenericList = new ArrayList();
 
-            // Додавання
             nonGenericList.Add(new Vector(3, 4));
             nonGenericList.Add(new Vector(1, 2));
             nonGenericList.Add(new Vector(5, 12));
@@ -80,14 +79,12 @@ namespace ConsoleApp
             Console.WriteLine("Після додавання:");
             Display(nonGenericList);
 
-            // Оновлення
             nonGenericList[0] = new Vector(6, 8);
             Console.WriteLine("Після оновлення (індекс 0):");
             Display(nonGenericList);
 
-            // Пошук
             Console.Write("Пошук (довжина > 10): ");
-            Vector foundArrayList = null;
+            Vector foundArrayList = null!;
             foreach (object item in nonGenericList)
             {
                 if (item is Vector vec && vec.Length > 10)
@@ -99,19 +96,17 @@ namespace ConsoleApp
             Console.WriteLine(foundArrayList?.Output() ?? "Не знайдено");
             Console.WriteLine();
 
-            // Видалення
             nonGenericList.RemoveAt(2);
             Console.WriteLine("Після видалення (індекс 2):");
             Display(nonGenericList);
 
-            // ========== ЗАВДАННЯ 3-4: БІНАРНЕ ДЕРЕВО ==========
             Console.WriteLine("\n4. БІНАРНЕ ДЕРЕВО (Сортування за довжиною - IComparable)");
             BinaryTree<Vector> lengthTree = new BinaryTree<Vector>();
 
-            lengthTree.Add(new Vector(5, 12));   // довжина 13
-            lengthTree.Add(new Vector(3, 4));    // довжина 5
-            lengthTree.Add(new Vector(8, 15));   // довжина 17
-            lengthTree.Add(new Vector(1, 1));    // довжина 1.41
+            lengthTree.Add(new Vector(5, 12));
+            lengthTree.Add(new Vector(3, 4));
+            lengthTree.Add(new Vector(8, 15));
+            lengthTree.Add(new Vector(1, 1));
 
             Console.WriteLine("Кореневий елемент: " + new Vector(5, 12).Output());
             Console.WriteLine("\nПрямий обхід (Preorder) - сортування за довжиною:");
@@ -136,7 +131,6 @@ namespace ConsoleApp
             }
             Console.WriteLine();
 
-            // ========== ДЕМОНСТРАЦІЯ МЕТОДІВ ВЕКТОРА ==========
             Console.WriteLine("\n 6. ДЕМОНСТРАЦІЯ МЕТОДІВ КЛАСУ VECTOR ");
             Vector testVector = new Vector(3, 4);
             Console.WriteLine("Початковий вектор: " + testVector.Output());
@@ -148,7 +142,6 @@ namespace ConsoleApp
 
         }
 
-        // Методи для виведення колекцій
         static void Display(List<Vector> list)
         {
             foreach (Vector v in list)

@@ -9,7 +9,7 @@ namespace VectorLibrary
         private Node<T> Root { get; set; }
         private readonly IComparer<T> _comparer;
 
-        public BinaryTree(IComparer<T> comparer = null)
+        public BinaryTree(IComparer<T> comparer = null!)
         {
             if (comparer == null)
             {
@@ -19,7 +19,7 @@ namespace VectorLibrary
                 }
                 else
                 {
-                    throw new ArgumentException("Type T must implement IComparable<T> or an IComparer<T> must be provided.");
+                    throw new ArgumentException("Повинен реалізовувати IComparable<T>");
                 }
             }
             else
@@ -41,6 +41,7 @@ namespace VectorLibrary
             }
 
             int comparisonResult = _comparer.Compare(data, current.Data);
+
             if (comparisonResult < 0)
             {
                 current.Left = AddRecursive(current.Left, data);
@@ -52,34 +53,12 @@ namespace VectorLibrary
 
             return current;
         }
-
         public IEnumerator<T> GetEnumerator()
         {
-            return PreorderTraversal(Root).GetEnumerator();
+            return new TreeEnumerator<T>(Root);
         }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
 
-        // Прямий обхід (preorder): корінь → ліва → права
-        private IEnumerable<T> PreorderTraversal(Node<T> node)
-        {
-            if (node == null)
-                yield break;
-
-            yield return node.Data;
-
-            foreach (T item in PreorderTraversal(node.Left))
-            {
-                yield return item;
-            }
-
-            foreach (T item in PreorderTraversal(node.Right))
-            {
-                yield return item;
-            }
-        }
     }
 }

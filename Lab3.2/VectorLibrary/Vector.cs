@@ -8,7 +8,6 @@ namespace VectorLibrary
         public double X { get; set; }
         public double Y { get; set; }
 
-        // Властивість для обчислення довжини вектора
         public double Length
         {
             get
@@ -23,20 +22,17 @@ namespace VectorLibrary
             Y = y;
         }
 
-        // Збільшення вектора на певний відрізок (масштабування)
         public void Increase(double factor)
         {
             X *= factor;
             Y *= factor;
         }
 
-        // Виведення інформації про вектор
         public string Output()
         {
             return $"Vector({X:F2}, {Y:F2}) - Length: {Length:F2}";
         }
 
-        // Реалізація IComparable для сортування за довжиною
         public int CompareTo(Vector other)
         {
             if (other == null) return 1;

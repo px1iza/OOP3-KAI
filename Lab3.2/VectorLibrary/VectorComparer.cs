@@ -5,14 +5,12 @@ namespace VectorLibrary
 {
     public class VectorComparer : IComparer<Vector>
     {
-        public int Compare(Vector x, Vector y)
+        public int Compare(Vector v1, Vector v2)
         {
-            if (x == null || y == null)
-            {
-                return x == null ? (y == null ? 0 : -1) : 1;
-            }
-            // Порівняння за координатою X
-            return x.X.CompareTo(y.X);
+            if (v1 == null || v2 == null)
+                return v1 == null ? (v2 == null ? 0 : -1) : 1;
+
+            return v1.X.CompareTo(v2.X);
         }
     }
 }
