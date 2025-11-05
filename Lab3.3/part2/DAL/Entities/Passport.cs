@@ -11,7 +11,7 @@ namespace DAL.Entities
         public string FullPassport => $"{Series}{Number:D6}";
 
         [MemoryPackConstructor]
-        public Passport() { } // Для серіалізації
+        public Passport() { }
 
         public Passport(string series, int number)
         {

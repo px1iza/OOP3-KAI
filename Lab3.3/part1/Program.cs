@@ -1,170 +1,83 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
+using System.Collections.Generic;
 using System.Xml.Serialization;
-namespace part1
+using MemoryPack;
+namespace MyApp
 {
+
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Vector v1 = new Vector(3.0, 4.0, "червоний");
+            Vector v2 = new Vector(5.0, 9.0, "жовтий");
+            Vector v3 = new Vector(2.5, 7.5, "Синій");
 
-            // Створення масиву об'єктів
-            Vector[] arr = new Vector[3];
-            arr[0] = new Vector("Red", 3.5, 4.2);
-            arr[1] = new Vector("Blue", 5.0, 12.0);
-            arr[2] = new Vector("Green", 8.3, 6.4);
+            Vector[] vectors = new Vector[] { v1, v2, v3 };
 
-            Console.WriteLine(" Початковий масив");
-            foreach (var item in arr)
-                Console.WriteLine($"{item.Output()} (Довжина: {item.GetLength():F2})");
+     
+            string json = JsonSerializer.Serialize(vectors, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText("vectors.json", json);
 
-            // Демонстрація методу Increase
-            Console.WriteLine("\n=== Збільшення вектора на 2.0 ===");
-            arr[0].Increase(2.0);
-            Console.WriteLine(arr[0].Output());
+           
+            string loadedJson = File.ReadAllText("vectors.json");
+            Vector[] loadedVectors = JsonSerializer.Deserialize<Vector[]>(loadedJson)!;
 
-            // Бінарна серіалізація
-            BinarySerialize(arr, "vectors_binary.dat");
-            var restoredBin = BinaryDeserialize("vectors_binary.dat");
-            Console.WriteLine("\n=== Відновлено з Binary ===");
-            foreach (var item in restoredBin)
-                Console.WriteLine(item.Output());
+            List<Vector> vectorList = new List<Vector> { v1, v2, v3 };
 
-            // XML серіалізація
-            XmlSerialize(arr, "vectors.xml");
-            var restoredXml = XmlDeserialize("vectors.xml");
-            Console.WriteLine("\n=== Відновлено з XML ===");
-            foreach (var item in restoredXml)
-                Console.WriteLine(item.Output());
+            
+            string jsonList = JsonSerializer.Serialize(vectorList, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText("vectorsList.json", jsonList);
 
-            // JSON серіалізація
-            JsonSerialize(arr, "vectors.json");
-            var restoredJson = JsonDeserialize("vectors.json");
-            Console.WriteLine("\n=== Відновлено з JSON ===");
-            foreach (var item in restoredJson)
-                Console.WriteLine(item.Output());
+            string loadedJsonList = File.ReadAllText("vectorsList.json");
+            List<Vector> loadedVectorsList = JsonSerializer.Deserialize<List<Vector>>(loadedJsonList)!;
 
-            // Користувацька серіалізація
-            CustomSerialize(arr, "vectors_custom.txt");
-            var restoredCustom = CustomDeserialize("vectors_custom.txt");
-            Console.WriteLine("\n=== Відновлено з Custom ===");
-            foreach (var item in restoredCustom)
-                Console.WriteLine(item.Output());
+    
+            XmlSerializer serializer = new XmlSerializer(typeof(List<Vector>));
 
-            // Порівняння масиву та колекції
-            List<Vector> list = new List<Vector>(arr);
-            JsonSerializeList(list, "vectors_list.json");
-            var restoredList = JsonDeserializeList("vectors_list.json");
-            Console.WriteLine("\n=== Відновлено з JSON List ===");
-            foreach (var item in restoredList)
-                Console.WriteLine(item.Output());
-
-            Console.WriteLine($"\n=== Порівняння ===");
-            Console.WriteLine($"Масив: {arr.Length} елементів");
-            Console.WriteLine($"Колекція: {list.Count} елементів");
-
-            Console.WriteLine("\nНатисніть будь-яку клавішу...");
-            Console.ReadKey();
-        }
-
-        // Бінарна серіалізація
-        static void BinarySerialize(Vector[] arr, string filename)
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            using (FileStream fs = new FileStream("vectors.xml", FileMode.Create))
             {
-                bf.Serialize(fs, arr);
+                serializer.Serialize(fs, vectorList);
             }
-        }
 
-        static Vector[] BinaryDeserialize(string filename)
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            using (FileStream fs = new FileStream(filename, FileMode.Open))
+            Console.WriteLine("Список векторів збережено у vectors.xml");
+
+            List<Vector> loadedVectorsListXml;
+            using (FileStream fs = new FileStream("vectors.xml", FileMode.Open))
             {
-                return (Vector[])bf.Deserialize(fs);
+                loadedVectorsListXml = (List<Vector>)serializer.Deserialize(fs)!;
             }
-        }
 
-        // XML серіалізація
-        static void XmlSerialize(Vector[] arr, string filename)
-        {
-            XmlSerializer xs = new XmlSerializer(typeof(Vector[]));
-            using (FileStream fs = new FileStream(filename, FileMode.Create))
+            byte[] mpBytes = MemoryPackSerializer.Serialize(vectorList);
+            File.WriteAllBytes("vectors.bin", mpBytes);
+
+            byte[] loadedMpBytes = File.ReadAllBytes("vectors.bin");
+            List<Vector> loadedVectorsMp = MemoryPackSerializer.Deserialize<List<Vector>>(loadedMpBytes)!;
+
+            Console.WriteLine("MemoryPack бінарна серіалізація виконана");
+
+            using (var bw = new BinaryWriter(File.Open("vectors.txt", FileMode.Create)))
             {
-                xs.Serialize(fs, arr);
-            }
-        }
-
-        static Vector[] XmlDeserialize(string filename)
-        {
-            XmlSerializer xs = new XmlSerializer(typeof(Vector[]));
-            using (FileStream fs = new FileStream(filename, FileMode.Open))
-            {
-                return (Vector[])xs.Deserialize(fs);
-            }
-        }
-
-        // JSON серіалізація (масив)
-        static void JsonSerialize(Vector[] arr, string filename)
-        {
-            string json = JsonConvert.SerializeObject(arr, Formatting.Indented);
-            File.WriteAllText(filename, json);
-        }
-
-        static Vector[] JsonDeserialize(string filename)
-        {
-            string json = File.ReadAllText(filename);
-            return JsonConvert.DeserializeObject<Vector[]>(json);
-        }
-
-        // JSON серіалізація (колекція)
-        static void JsonSerializeList(List<Vector> list, string filename)
-        {
-            string json = JsonConvert.SerializeObject(list, Formatting.Indented);
-            File.WriteAllText(filename, json);
-        }
-
-        static List<Vector> JsonDeserializeList(string filename)
-        {
-            string json = File.ReadAllText(filename);
-            return JsonConvert.DeserializeObject<List<Vector>>(json);
-        }
-
-        // Користувацька серіалізація
-        static void CustomSerialize(Vector[] arr, string filename)
-        {
-            using (StreamWriter writer = new StreamWriter(filename))
-            {
-                writer.WriteLine(arr.Length);
-                foreach (var vector in arr)
+                foreach (var v in vectors)
                 {
-                    writer.WriteLine($"{vector.LineColor}|{vector.X}|{vector.Y}");
+                    bw.Write(v.X);
+                    bw.Write(v.Y);
+                    bw.Write(v.Color);
                 }
             }
-        }
-
-        static Vector[] CustomDeserialize(string filename)
-        {
-            using (StreamReader reader = new StreamReader(filename))
+            using (var bw = new BinaryWriter(File.Open("vectors.bin", FileMode.Create)))
             {
-                int count = int.Parse(reader.ReadLine());
-                Vector[] arr = new Vector[count];
-
-                for (int i = 0; i < count; i++)
+                foreach (var v in vectors)
                 {
-                    string[] parts = reader.ReadLine().Split('|');
-                    arr[i] = new Vector(parts[0], double.Parse(parts[1]), double.Parse(parts[2]));
+                    bw.Write(v.X);
+                    bw.Write(v.Y);
+                    bw.Write(v.Color);
                 }
-                return arr;
             }
+
         }
+
     }
 }

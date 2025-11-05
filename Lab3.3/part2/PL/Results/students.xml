@@ -11,4 +11,26 @@
       <Number>123456</Number>
     </Passport>
   </Student>
+  <Student>
+    <FirstName>yu</FirstName>
+    <LastName>we</LastName>
+    <Height>100</Height>
+    <Weight>35</Weight>
+    <StudentID>FU123458</StudentID>
+    <Passport>
+      <Series>IO</Series>
+      <Number>145674</Number>
+    </Passport>
+  </Student>
+  <Student>
+    <FirstName>dfe</FirstName>
+    <LastName>fwe</LastName>
+    <Height>190</Height>
+    <Weight>12</Weight>
+    <StudentID>GG345689</StudentID>
+    <Passport>
+      <Series>JJ</Series>
+      <Number>123489</Number>
+    </Passport>
+  </Student>
 </ArrayOfStudent>

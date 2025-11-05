@@ -17,4 +17,4 @@ namespace DAL
 
         public List<T> Load() => _provider.Load(_filePath);
     }
-}
+} 

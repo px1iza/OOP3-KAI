@@ -24,5 +24,44 @@
     "RideCount": 0,
     "FirstName": "natalia",
     "LastName": "volynets"
+  },
+  {
+    "Height": 180,
+    "Weight": 70,
+    "StudentID": "FF456789",
+    "Passport": {
+      "Series": "JJ",
+      "Number": 123457,
+      "FullPassport": "JJ123457"
+    },
+    "RideCount": 0,
+    "FirstName": "fefef",
+    "LastName": "gdrg"
+  },
+  {
+    "Height": 170,
+    "Weight": 65,
+    "StudentID": "DF234567",
+    "Passport": {
+      "Series": "DF",
+      "Number": 342332,
+      "FullPassport": "DF342332"
+    },
+    "RideCount": 0,
+    "FirstName": "df",
+    "LastName": "df"
+  },
+  {
+    "Height": 179,
+    "Weight": 56,
+    "StudentID": "BB456789",
+    "Passport": {
+      "Series": "DS",
+      "Number": 345678,
+      "FullPassport": "DS345678"
+    },
+    "RideCount": 0,
+    "FirstName": "df",
+    "LastName": "df"
   }
 ]

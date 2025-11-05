@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using DAL;
 using DAL.Entities;
 using BLL.Exceptions;
+using DAL.Interfaces;
+using DAL.DataProviders;
 
 namespace BLL
 {
@@ -10,9 +12,18 @@ namespace BLL
     {
         private readonly EntityContext<Student> _context;
 
-        public EntityService(EntityContext<Student> context)
+        public EntityService(string provider, string filePath)
         {
-            _context = context;
+            IDataProvider<Student> dataProvider = provider switch
+            {
+                "binary" => new MemoryPackProvider<Student>(),
+                "xml" => new XmlProvider<Student>(),
+                "json" => new JSONProvider<Student>(),
+                "custom" => new CustomProvider<Student>(),
+                _ => throw new ArgumentException("Невідомий тип провайдера даних.")
+            };
+            _context = new EntityContext<Student>(dataProvider, filePath);
+
         }
 
         public void AddStudent(Student s)

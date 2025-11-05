@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfVector xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Vector>
+    <X>3</X>
+    <Y>4</Y>
+    <Color>червоний</Color>
+  </Vector>
+  <Vector>
+    <X>5</X>
+    <Y>9</Y>
+    <Color>жовтий</Color>
+  </Vector>
+  <Vector>
+    <X>2.5</X>
+    <Y>7.5</Y>
+    <Color>Синій</Color>
+  </Vector>
+</ArrayOfVector>

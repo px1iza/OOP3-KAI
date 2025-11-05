@@ -3,7 +3,6 @@ using MemoryPack;
 
 namespace DAL.Entities
 {
-    [Serializable]
     [MemoryPackable]
     public partial class Student : Human, ISkill
     {
@@ -15,7 +14,7 @@ namespace DAL.Entities
         private int _rideCount = 0;
         public int RideCount => _rideCount;
 
-        public Student() { } // Для серіалізації
+        public Student() { }
 
         [MemoryPackConstructor]
         public Student(string firstName, string lastName, int height, int weight, string studentID, Passport passport)
@@ -37,7 +36,6 @@ namespace DAL.Entities
             return System.Text.RegularExpressions.Regex.IsMatch(StudentID, @"^[A-Z]{2}\d{6}$");
         }
 
-        // --- Додаємо ToString для CustomProvider ---
         public override string ToString()
         {
             return $"Student {FirstName}{LastName}\n{{ " +

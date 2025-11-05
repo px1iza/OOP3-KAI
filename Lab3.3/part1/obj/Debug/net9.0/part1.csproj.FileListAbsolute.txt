@@ -16,3 +16,4 @@
 /Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.3/part1/obj/Debug/net9.0/part1.pdb
 /Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.3/part1/obj/Debug/net9.0/part1.genruntimeconfig.cache
 /Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.3/part1/obj/Debug/net9.0/ref/part1.dll
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.3/part1/bin/Debug/net9.0/MemoryPack.Core.dll

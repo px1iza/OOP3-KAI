@@ -1,33 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
-namespace part1
+using System.Text.Json;
+using MemoryPack;
+namespace MyApp
 {
     [Serializable]
-    public class Vector : ISerializable
+    [MemoryPackable]
+    public partial class Vector
     {
-        public string LineColor { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
+        public string Color { get; set; }
 
+        [MemoryPackConstructor]
         public Vector() { }
 
-        public Vector(string lineColor, double x, double y)
+        public Vector(double x, double y, string color)
         {
-            LineColor = lineColor;
-            X = x;
-            Y = y;
-        }
-
-        // Конструктор для користувацької серіалізації
-        protected Vector(SerializationInfo info, StreamingContext context)
-        {
-            LineColor = info.GetString("LineColor");
-            X = info.GetDouble("X");
-            Y = info.GetDouble("Y");
+            this.X = x;
+            this.Y = y;
+            this.Color = color;
         }
 
         public double GetLength()
@@ -35,28 +25,18 @@ namespace part1
             return Math.Sqrt(X * X + Y * Y);
         }
 
-        public void Increase(double increment)
+        public void Increase(double factor)
         {
-            double length = GetLength();
-            if (length > 0)
-            {
-                double factor = (length + increment) / length;
-                X *= factor;
-                Y *= factor;
-            }
+            X *= factor;
+            Y *= factor;
         }
 
-        public string Output()
+        public void PrintInfo()
         {
-            return $"Vector[Color={LineColor}, X={X:F2}, Y={Y:F2}, Length={GetLength():F2}]";
-        }
-
-        // Користувацька серіалізація
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("LineColor", LineColor);
-            info.AddValue("X", X);
-            info.AddValue("Y", Y);
+            Console.WriteLine($"Колір: {Color}");
+            Console.WriteLine($"Координати кінця: ({X}, {Y})");
+            Console.WriteLine($"Довжина вектора: {GetLength():F2}");
         }
     }
+
 }

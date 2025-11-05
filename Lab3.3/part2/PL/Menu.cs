@@ -15,10 +15,10 @@ namespace PL
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            while (true) // головний цикл, де можна вибрати серіалізацію заново
+            while (true)
             {
                 Console.Clear();
-                Console.WriteLine("=== СИСТЕМА УПРАВЛІННЯ СТУДЕНТАМИ ===\n");
+                Console.WriteLine("СИСТЕМА УПРАВЛІННЯ СТУДЕНТАМИ\n");
                 Console.WriteLine("Оберіть тип серіалізації:");
                 Console.WriteLine("1. Binary (.bin)");
                 Console.WriteLine("2. XML (.xml)");
@@ -35,37 +35,36 @@ namespace PL
                     break;
                 }
 
-                IDataProvider<Student> provider;
+                string provider;
                 string extension;
 
                 switch (choice)
                 {
                     case "1":
-                        provider = new MemoryPackProvider<Student>();
+                        provider = "binary";
                         extension = ".bin";
                         break;
                     case "2":
-                        provider = new XmlProvider<Student>();
+                        provider = "xml";
                         extension = ".xml";
                         break;
                     case "3":
-                        provider = new JSONProvider<Student>();
+                        provider = "json";
                         extension = ".json";
                         break;
                     case "4":
-                        provider = new CustomProvider<Student>();
+                        provider = "custom";
                         extension = ".txt";
                         break;
                     default:
-                        Console.WriteLine("❌ Невірний вибір. Натисніть будь-яку клавішу, щоб спробувати ще раз...");
+                        Console.WriteLine("Невірний вибір. Натисніть будь-яку клавішу, щоб спробувати ще раз...");
                         Console.ReadKey();
                         continue;
                 }
 
-                var context = new EntityContext<Student>(provider, $"students{extension}");
-                var service = new EntityService(context);
+                var service = new EntityService(provider, $"students{extension}");
 
-                RunDatabaseMenu(service); // запускаємо меню з операціями
+                RunDatabaseMenu(service);
             }
         }
 
@@ -150,7 +149,7 @@ namespace PL
             Console.Write("Введіть ID для видалення: ");
             string id = Console.ReadLine();
             service.DeleteStudent(id);
-            Console.WriteLine("*** Видалено (якщо існував) ***");
+            Console.WriteLine(" Видалено (якщо існував) ");
         }
 
         private static void FindStudent(EntityService service)
