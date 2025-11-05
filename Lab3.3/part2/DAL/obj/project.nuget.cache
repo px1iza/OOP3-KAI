@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "XSgXH4+3rLQ=",
+  "success": true,
+  "projectFilePath": "/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.3/part2/DAL/DAL.csproj",
+  "expectedPackageFiles": [
+    "/Users/elizavetarabirokh/.nuget/packages/memorypack/1.21.4/memorypack.1.21.4.nupkg.sha512",
+    "/Users/elizavetarabirokh/.nuget/packages/memorypack.core/1.21.4/memorypack.core.1.21.4.nupkg.sha512",
+    "/Users/elizavetarabirokh/.nuget/packages/memorypack.generator/1.21.4/memorypack.generator.1.21.4.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VectorLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34955b438169f1949b386aa89a323841273ed367")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7293f23c554cd04e5425f67712783c0a4f0e37e")]
 [assembly: System.Reflection.AssemblyProductAttribute("VectorLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VectorLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

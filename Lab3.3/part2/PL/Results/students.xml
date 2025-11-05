@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStudent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Student>
+    <FirstName>Liza</FirstName>
+    <LastName>Rabirokh</LastName>
+    <Height>180</Height>
+    <Weight>70</Weight>
+    <StudentID>FF123456</StudentID>
+    <Passport>
+      <Series>JJ</Series>
+      <Number>123456</Number>
+    </Passport>
+  </Student>
+</ArrayOfStudent>

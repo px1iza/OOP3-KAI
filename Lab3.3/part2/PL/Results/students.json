@@ -1,0 +1,28 @@
+[
+  {
+    "Height": 180,
+    "Weight": 70,
+    "StudentID": "FF123456",
+    "Passport": {
+      "Series": "KK",
+      "Number": 123456,
+      "FullPassport": "KK123456"
+    },
+    "RideCount": 0,
+    "FirstName": "Liza",
+    "LastName": "Rabirokh"
+  },
+  {
+    "Height": 180,
+    "Weight": 90,
+    "StudentID": "OI123456",
+    "Passport": {
+      "Series": "TT",
+      "Number": 126789,
+      "FullPassport": "TT126789"
+    },
+    "RideCount": 0,
+    "FirstName": "natalia",
+    "LastName": "volynets"
+  }
+]

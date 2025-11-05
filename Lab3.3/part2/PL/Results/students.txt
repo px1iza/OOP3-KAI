@@ -1,0 +1,2 @@
+﻿Student LizaRabirokh
+{ "FirstName": "Liza", "LastName": "Rabirokh", "Height": 180, "Weight": 70, "StudentID": "FF123456", "PassportSeries": "JJ", "PassportNumber": "123456" };
