@@ -27,7 +27,7 @@ namespace PL
                 Console.WriteLine("0. Вихід");
                 Console.Write("\nВаш вибір: ");
 
-                string choice = Console.ReadLine();
+                string choice = Console.ReadLine()!;
 
                 if (choice == "0")
                 {
@@ -82,7 +82,7 @@ namespace PL
                 Console.WriteLine("0. Назад (до вибору серіалізації)");
                 Console.Write("\nВаш вибір: ");
 
-                string option = Console.ReadLine();
+                string option = Console.ReadLine()!;
                 if (option == "0") break;
 
                 try
@@ -112,21 +112,21 @@ namespace PL
         private static void AddStudent(EntityService service)
         {
             Console.Write("Ім’я: ");
-            string fn = Console.ReadLine();
+            string fn = Console.ReadLine()!;
             Console.Write("Прізвище: ");
-            string ln = Console.ReadLine();
+            string ln = Console.ReadLine()!;
             Console.Write("Зріст (см): ");
-            int height = int.Parse(Console.ReadLine());
+            int height = int.Parse(Console.ReadLine()!);
             Console.Write("Вага (кг): ");
-            int weight = int.Parse(Console.ReadLine());
+            int weight = int.Parse(Console.ReadLine()!);
             Console.Write("Student ID (формат: AA123456): ");
-            string id = Console.ReadLine();
+            string id = Console.ReadLine()!;
             Console.Write("Серія паспорта: ");
-            string ps = Console.ReadLine();
+            string ps = Console.ReadLine()!;
             Console.Write("Номер паспорта: ");
-            int pn = int.Parse(Console.ReadLine());
+            int pn = int.Parse(Console.ReadLine()!);
 
-            var student = new Student(fn, ln, height, weight, id, new Passport(ps, pn));
+            var student = new Student(fn, ln, height, weight, id, new Passport(ps, pn))!;
             service.AddStudent(student);
             Console.WriteLine("*** Студента додано! ***");
         }
@@ -147,7 +147,7 @@ namespace PL
         private static void DeleteStudent(EntityService service)
         {
             Console.Write("Введіть ID для видалення: ");
-            string id = Console.ReadLine();
+            string id = Console.ReadLine()!;
             service.DeleteStudent(id);
             Console.WriteLine(" Видалено (якщо існував) ");
         }
@@ -155,7 +155,7 @@ namespace PL
         private static void FindStudent(EntityService service)
         {
             Console.Write("Введіть ID: ");
-            string id = Console.ReadLine();
+            string id = Console.ReadLine()!;
             var all = service.GetAllStudents();
             var student = all.Find(s => s.StudentID == id);
             if (student != null)
@@ -167,7 +167,7 @@ namespace PL
         private static void UpdateStudent(EntityService service)
         {
             Console.Write("Введіть ID для оновлення: ");
-            string id = Console.ReadLine();
+            string id = Console.ReadLine()!;
             service.DeleteStudent(id);
             Console.WriteLine("Введіть нові дані:");
             AddStudent(service);
