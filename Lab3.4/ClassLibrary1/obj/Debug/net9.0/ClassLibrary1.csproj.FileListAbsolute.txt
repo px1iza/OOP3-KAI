@@ -1,0 +1,12 @@
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.4/ClassLibrary1/bin/Debug/net9.0/ClassLibrary1.deps.json
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.4/ClassLibrary1/bin/Debug/net9.0/ClassLibrary1.dll
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.4/ClassLibrary1/bin/Debug/net9.0/ClassLibrary1.pdb
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.4/ClassLibrary1/obj/Debug/net9.0/ClassLibrary1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.4/ClassLibrary1/obj/Debug/net9.0/ClassLibrary1.AssemblyInfoInputs.cache
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.4/ClassLibrary1/obj/Debug/net9.0/ClassLibrary1.AssemblyInfo.cs
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.4/ClassLibrary1/obj/Debug/net9.0/ClassLibrary1.csproj.CoreCompileInputs.cache
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.4/ClassLibrary1/obj/Debug/net9.0/ClassLibrary1.sourcelink.json
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.4/ClassLibrary1/obj/Debug/net9.0/ClassLibrary1.dll
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.4/ClassLibrary1/obj/Debug/net9.0/refint/ClassLibrary1.dll
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.4/ClassLibrary1/obj/Debug/net9.0/ClassLibrary1.pdb
+/Users/elizavetarabirokh/Desktop/OOP3-KAI/Lab3.4/ClassLibrary1/obj/Debug/net9.0/ref/ClassLibrary1.dll
