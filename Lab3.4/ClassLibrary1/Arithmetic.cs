@@ -55,11 +55,9 @@ namespace ClassLibrary1
             }
         }
 
-        protected virtual void OnOverflowOccurred(OverflowEventArgs e)
+        protected void OnOverflowOccurred(OverflowEventArgs e)
         {
             OverflowOccurred?.Invoke(this, e);
         }
-        //Тут за допомогою ?.Invoke перевіряється, чи є підписники.
-        // Якщо є — подія викликається (тобто запускається обробник у Program).
     }
 }

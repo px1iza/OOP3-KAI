@@ -2,7 +2,6 @@ using System;
 
 namespace ClassLibrary1
 {
-    // Клас аргументу події переповнення
     public class OverflowEventArgs : EventArgs
     {
         public string Message { get; }
