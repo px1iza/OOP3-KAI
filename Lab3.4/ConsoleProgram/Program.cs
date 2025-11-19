@@ -41,7 +41,7 @@ namespace ConsoleProgram
             Console.WriteLine($"Сума (анонімний): {anonSum(numbers)}");
 
             Arithmetic calc = new Arithmetic();
-            calc.OverflowOccurred += OnOverflowOccurred!;
+            calc.OverflowOccurred += OnOverflowOccurred;
 
             Console.WriteLine("\nПеревірка переповнення:");
             int x = int.MaxValue;
