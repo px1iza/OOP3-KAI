@@ -1,46 +1,100 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using DAL;
 using DAL.Entities;
+using BLL.Exceptions;
 using DAL.Interfaces;
+using DAL.DataProvider;
 
 namespace BLL.Services
 {
     public class StudentService
     {
-        private readonly IDataProvider<Student> _provider;
+        private readonly EntityContext<Student> _context;
 
-        public StudentService(IDataProvider<Student> provider)
+        public StudentService(string provider, string filePath)
         {
-            _provider = provider;
+            IDataProvider<Student> dataProvider = provider switch
+            {
+                "json" => new JSONProvider<Student>(),
+                _ => throw new ArgumentException("Невідомий тип провайдера даних.")
+            };
+            _context = new EntityContext<Student>(dataProvider, filePath);
+
         }
 
-        public List<Student> GetAllStudents()
-            => _provider.Load();
-
-        public List<Student> GetStudentsWithIdealWeight()
+        public void AddStudent(Student s)
         {
-            return _provider.Load()
-                .Where(s => s.Height - 110 == s.Weight)
-                .ToList();
+            if (string.IsNullOrWhiteSpace(s.FirstName) || string.IsNullOrWhiteSpace(s.LastName))
+                throw new InvalidStudentDataException("Ім’я або прізвище не може бути порожнім!");
+
+            if (!s.IsValidStudentID())
+                throw new InvalidStudentDataException("Невірний формат Student ID!");
+
+            List<Student> all = _context.Load();
+            foreach (Student st in all)
+            {
+                if (st.StudentID == s.StudentID)
+                    throw new InvalidStudentDataException($"Студент з ID {s.StudentID} вже існує!");
+            }
+
+            all.Add(s);
+            _context.Save(all);
         }
 
-        public void RegisterStudent(Student student)
+        public void DeleteStudent(string id)
         {
-            if (!student.IsValidStudentID())
-                throw new ArgumentException("Invalid student ID");
+            List<Student> all = _context.Load();
+            bool found = false;
 
-            if (student.Passport != null && !student.Passport.IsValidPassport())
-                throw new ArgumentException("Invalid passport");
+            for (int i = 0; i < all.Count; i++)
+            {
+                if (all[i].StudentID == id)
+                {
+                    all.RemoveAt(i);
+                    found = true;
+                    break;
+                }
+            }
 
-            var all = _provider.Load();
-            all.Add(student);
-            _provider.Save(all);
+            if (!found)
+                throw new StudentNotFoundException($"Студента з ID {id} не знайдено!");
+
+            _context.Save(all);
         }
 
-        public void SaveStudents(List<Student> students)
+        public Student FindStudent(string id)
         {
-            _provider.Save(students);
+            List<Student> all = _context.Load();
+            foreach (Student s in all)
+            {
+                if (s.StudentID == id)
+                    return s;
+            }
+            throw new StudentNotFoundException($"Студента з ID {id} не знайдено!");
+        }
+
+        public List<Student> GetAllStudents() => _context.Load();
+
+        public void UpdateStudent(string id, Student updated)
+        {
+            List<Student> all = _context.Load();
+            bool found = false;
+
+            for (int i = 0; i < all.Count; i++)
+            {
+                if (all[i].StudentID == id)
+                {
+                    all[i] = updated;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+                throw new StudentNotFoundException($"Студента з ID {id} не знайдено!");
+
+            _context.Save(all);
         }
     }
 }
