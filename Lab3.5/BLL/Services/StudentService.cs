@@ -8,42 +8,39 @@ namespace BLL.Services
 {
     public class StudentService
     {
-        private readonly IDataProvider<Student> _dataProvider;
+        private readonly IDataProvider<Student> _provider;
 
-        public StudentService(IDataProvider<Student> dataProvider)
+        public StudentService(IDataProvider<Student> provider)
         {
-            _dataProvider = dataProvider;
+            _provider = provider;
         }
 
+        public List<Student> GetAllStudents()
+            => _provider.Load();
 
-        public List<Student> GetAllStudents(string filePath)
+        public List<Student> GetStudentsWithIdealWeight()
         {
-            return _dataProvider.Load(filePath);
-        }
-
-        public List<Student> GetStudentsWithIdealWeight(string filePath)
-        {
-            var students = _dataProvider.Load(filePath);
-
-            return students
+            return _provider.Load()
                 .Where(s => s.Height - 110 == s.Weight)
                 .ToList();
         }
 
-        public void RegisterStudent(List<Student> currentList, Student newStudent, string filePath)
+        public void RegisterStudent(Student student)
         {
-            if (!newStudent.IsValidStudentID())
-            {
-                throw new ArgumentException("Invalid Student ID format.");
-            }
+            if (!student.IsValidStudentID())
+                throw new ArgumentException("Invalid student ID");
 
-            if (newStudent.Passport != null && !newStudent.Passport.IsValidPassport())
-            {
-                throw new ArgumentException("Invalid Passport format.");
-            }
+            if (student.Passport != null && !student.Passport.IsValidPassport())
+                throw new ArgumentException("Invalid passport");
 
-            currentList.Add(newStudent);
-            _dataProvider.Save(currentList, filePath);
+            var all = _provider.Load();
+            all.Add(student);
+            _provider.Save(all);
+        }
+
+        public void SaveStudents(List<Student> students)
+        {
+            _provider.Save(students);
         }
     }
 }
